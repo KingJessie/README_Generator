@@ -1,12 +1,30 @@
 import inquirer from 'inquirer';
 import fs from "fs/promises"
 
-let {description, license} = await inquirer.prompt([
+let {title, contentTable, description, license} = await inquirer.prompt([
+    {
+      type: 'input',
+      name: 'title',
+      message: "What is the title of your project?"
+    },
+    {
+      type: 'input',
+      name: 'contentTable',
+      message: "Insert table of content or press ENTER for default",
+      default: `- [Project Description](#project-description)
+      - [Installation](#installation)
+      - [Usage](#usage)
+      - [Screenshot](#screenshot)
+      - [License](#license)
+      - [Contributing](#contributing)
+      - [Tests](#tests)
+      - [Questions](#questions)`
+      },
     {
       type: 'input',
       name: 'description',
       message: "Write a description of your project?"
-    },
+      },
     {
       type: 'list',
       name: 'license',
@@ -19,11 +37,18 @@ let {description, license} = await inquirer.prompt([
   ]);
   
   let readMeGenerator =  `
-  # Project Description
-  ${description}
+  # ${title} 📝
   
+  ## Table of contents
+  ${contentTable}
+
+  ## **Project Description**
+  ${description}
+
   ## License
   ${generateLicense(license)}
+
+
   `;
   
   await fs.writeFile("README.md", readMeGenerator);
@@ -39,5 +64,5 @@ let {description, license} = await inquirer.prompt([
   }
   
   console.log("success!");
-  console.log(license)
+
   
