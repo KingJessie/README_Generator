@@ -55,13 +55,16 @@ let {title, contentTable, description, installation, usage, screenshot, builtWit
       {
         type: 'input',
         name: 'usage',
-        message: "Write the usuage of the project?",
+        message: "Write the usage of the project?",
       },
     {
-      type: 'checkbox',
+      type: 'list',
       name: 'screenshot',
       message: 'What type of screenshot would you like to add?',
       choices: ['Image', 'Video', 'Both'],
+      filter(val) {
+        return val.toLowerCase();
+      }
     },
     {
         type: 'input',
@@ -165,11 +168,11 @@ let {title, contentTable, description, installation, usage, screenshot, builtWit
 
   function generateScreenshot(screenshot) {
     if (screenshot === 'both') {
-      return '![screenshot](images/bn.gif)\n![screenshot](images/bn_image.png)';
+      return '![screenshot](images/bn.gif)\n![screenshot](images/bn.png)';
     } else if (screenshot === 'video') {
-      return 'https://user-images.githubusercontent.com/97694194/215339388-2ce8e018-399a-45c1-a207-4f0cc803a801.mp4';
-    } else {
       return '![screenshot](images/bn.gif)';
+    } else {
+      return '![screenshot](images/bn_image.png)';
     }
   }
   
