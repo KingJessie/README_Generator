@@ -74,7 +74,7 @@ let {title, contentTable, description, installation, usage, screenshot, builtWit
     type: "input",
     name: "builtWith",
     message: "What technologies did you use?",
-    default:" - [] Technologies: \n" +
+    default:" - Technologies: \n" +
       " - [x] Semantic HTML5 markup \n" +
       " - [x] CSS custom properties \n" +
       " - [x] JavaScript \n" +

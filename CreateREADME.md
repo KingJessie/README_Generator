@@ -1,5 +1,5 @@
 
-  # **Bette Nutrient** ✒️📃
+  # **Better Nutrient** ✒️📃
   
   ## Table of contents
   - [Project Description](#project-description)
@@ -31,9 +31,10 @@ code .
 
   ## Screenshot
   ![screenshot](images/bn.gif)
+![screenshot](images/bn.png)
   
   ## Built with
-  * - [] Technologies: 
+  * - Technologies: 
  - [x] Semantic HTML5 markup 
  - [x] CSS custom properties 
  - [x] JavaScript 
@@ -44,7 +45,7 @@ code .
 
   
   ## What I learned
-  For the most part the newest part of building this page was learning to work in a team, take on smaller pieces of the whole, the process of give and take, as well as learning new aspects of GitHub - project side, the board, switching branches, pushing to main and accepting other team members pull requests. 
+  For the most part the newest part of building this page was learning to work in a team, take on smaller pieces of the whole, the process of give and take, as well as learning new aspects of GitHub - project side, the board, switching branches, pushing to main and accepting other team members pull requests.
 
   ## Continued development
   For future development, our aim is to introduce a feature that provides users with healthy smoothie recipes to complement their healthy meal choices. Additionally, we will include a health and wellness blog to provide users with informative and educational articles on healthy eating and wellness.
@@ -55,10 +56,10 @@ code .
   ## Credits
   yes
   * Image: Shaif Arfan
-  * Icons: Icons8
+* Icons: Icons8
 
   ## Authors
-* Jessie
+  * Jessie
 * Sophie
 * Ebele
 
