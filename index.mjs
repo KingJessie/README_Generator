@@ -12,7 +12,7 @@ const requireInput = (input) => {
   };
 
 let {title, contentTable, description, installation, usage, screenshot, builtWith, learnt,
-    continuedDevelopment, license, authors, credits} = await inquirer.prompt([
+    continuedDevelopment, license, authors, confirmCredits, credits} = await inquirer.prompt([
     {
       type: 'input',
       name: 'title',
@@ -56,6 +56,7 @@ let {title, contentTable, description, installation, usage, screenshot, builtWit
         type: 'input',
         name: 'usage',
         message: "Write the usage of the project?",
+        default: "No usage provided"
       },
     {
       type: 'list',
@@ -70,15 +71,14 @@ let {title, contentTable, description, installation, usage, screenshot, builtWit
         type: 'input',
         name: 'builtWith',
         message: 'What technologies did you use?',
-        default: `
-      - [x] Semantic HTML5 markup
-      - [x] CSS custom properties
-      - [x] JavaScript
-      - [x] jQuery
-      - [x] Bootstrap
-      - [x] Flexbox
-      - [x] Mobile-first workflow
-      `
+        default: " - [x] Semantic HTML5 markup \n" +
+      " - [x] CSS custom properties \n" +
+     " - [x] JavaScript \n" +
+     " - [x] jQuery \n" +
+     " - [x] Bootstrap \n" +
+     " - [x] Flexbox \n" +
+     " - [x] Mobile-first workflow " 
+
       },
       {
         type: 'input',
@@ -103,15 +103,38 @@ let {title, contentTable, description, installation, usage, screenshot, builtWit
       {
         type: 'input',
         name: 'authors',
-        message: "List the author(s) for the project",
+        message: "Write the author(s) for the project",
+        validate: requireInput
+      },
+      {
+        type: 'list',
+        name: 'confirmCredits',
+        message: 'Do you want to provide credits?',
+        choices: ['Yes', 'No'],
+        filter(val) {
+          return val.toLowerCase();
+        }
       },
       {
         type: 'input',
         name: 'credits',
-        message: "Write any credits",
-      },
+        message: 'Please provide credits:',
+        when: (response) => response.confirmCredits === 'Yes',
+        default: () => 'No information submitted'
+      }
 
   ]);
+
+
+  function returnList(input) {
+    if (input) {
+      return input.split(",").map(item => `* ${item.trim()}`).join("\n");
+    } else {
+      return "";
+    }
+  }
+  
+
   
   let readMeGenerator =  `
   # ![screenshot](images/readme.png) **${title}** 
@@ -132,7 +155,8 @@ let {title, contentTable, description, installation, usage, screenshot, builtWit
   ${generateScreenshot(screenshot)}
   
   ## Built with
-  ${builtWith}
+  ${returnList(builtWith)}
+
   
   ## What I learned
   ${learnt}
@@ -144,12 +168,11 @@ let {title, contentTable, description, installation, usage, screenshot, builtWit
   ${generateLicense(license)}
 
   ## Authors
-  ${authors}
+  ${returnList(authors)}
 
   ## Credits
-  ${credits}
-
- 
+  ${confirmCredits}
+  ${returnList(credits)}
 
 
   `;
@@ -174,7 +197,8 @@ let {title, contentTable, description, installation, usage, screenshot, builtWit
     } else {
       return '![screenshot](images/bn_image.png)';
     }
-  }
+  };
+
   
   
   console.log("success!");
