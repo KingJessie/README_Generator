@@ -13,8 +13,8 @@ const requireInput = (input) => {
 };
 
 
-let {title, contentTable, description, installation, usage, screenshot, builtWith, learnt, 
-  license, authors, questions, confirmCredits, credits,} = await inquirer.prompt([
+let {title, contentTable, description, installation, usage, screenshot, builtWith,  
+  license, contributing, confirmTest, test, github, githubUrl, email, authors } = await inquirer.prompt([
   {
     type: "input",
     name: "title",
@@ -30,11 +30,12 @@ let {title, contentTable, description, installation, usage, screenshot, builtWit
       - [Usage](#usage)
       - [Screenshot](#screenshot)
       - [Built with](#built-with)
-      - [What I learned](#what-i-learned)
       - [License](#license)
-      - [Authors](#authors)
+      - [Contributing](#contributing)
+      - [Test](#test)
       - [Questions](#questions)
-      - [Credits](#credits)`,
+      - [Authors](#authors)
+      `,
   },
   {
     type: "input",
@@ -65,7 +66,7 @@ let {title, contentTable, description, installation, usage, screenshot, builtWit
     type: "list",
     name: "screenshot",
     message: "What type of screenshot would you like to add?",
-    choices: ["Image", "Video", "Both"],
+    choices: ["Image", "Video"],
     filter(val) {
       return val.toLowerCase();
     },
@@ -74,7 +75,7 @@ let {title, contentTable, description, installation, usage, screenshot, builtWit
     type: "input",
     name: "builtWith",
     message: "What technologies did you use?",
-    default:" - Technologies: \n" +
+    default:" Technologies: \n" +
       " - [x] Semantic HTML5 markup \n" +
       " - [x] CSS custom properties \n" +
       " - [x] JavaScript \n" +
@@ -82,13 +83,6 @@ let {title, contentTable, description, installation, usage, screenshot, builtWit
       " - [x] Bootstrap \n" +
       " - [x] Flexbox \n" +
       " - [x] Mobile-first workflow ",
-  },
-  {
-    type: "input",
-    name: "learnt",
-    message:
-      "What did you learn from the projects and what challenges did you overcome?",
-    validate: requireInput,
   },
   {
     type: "list",
@@ -101,35 +95,63 @@ let {title, contentTable, description, installation, usage, screenshot, builtWit
   },
   {
     type: "input",
-    name: "authors",
-    message: "Write the author(s) for the project",
-    validate: requireInput,
-  },
-  {
-    type: "input",
-    name: "questions",
-    message: "Write your contact details:",
+    name: "contributing",
+    message:
+      "Write information on how other developers can contribute:",
     validate: requireInput,
   },
   {
     type: "list",
-    name: "confirmCredits",
-    message: "Do you want to provide credits?",
-    choices: ["Yes", "None"],
+    name: "confirmTest",
+    message: "Do you have information on how to test this software?",
+    choices: ["Yes", "No"],
     filter(val) {
         return val.toLowerCase();
       }
   },
   {
     type: "input",
-    name: "credits",
-    message: "Please provide credits:",
-    //  Confirm credits: If user choice is 'Yes,' then it asks user to submit response.
+    name: "test",
+    message: "Please provide test information:",
+    //  Confirm test: If user choice is 'Yes,' then it asks user to submit response.
     // A default answer is used if no information has been given.
-    // If the user chose "No," the programme would end and the word "NONE" would be shown in the credits.
-    when: (response) => response.confirmCredits === 'yes',
+    // If the user chose "No," the programme would end and the word "NONE" would be shown in the test.
+    when: (response) => response.confirmTest === 'yes',
         default: () => 'No information submitted'
   },
+  {
+    type: "input",
+    name: "authors",
+    message: "Write the author(s) for the project",
+    validate: requireInput,
+  },
+  {
+    type: "input",
+    name: "github",
+    message: "What is your github username:",
+    validate: requireInput,
+  },
+  {
+    type: "input",
+    name: "githubUrl",
+    message: "What is your github URL:",
+    validate: requireInput,
+  },
+  {
+    type: 'input',
+    name: 'email',
+    message: "What's your email address:",
+    validate(value) {
+      const pass = value.match(
+        /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/i
+      );
+      if (pass) {
+        return true;
+      }
+
+      return 'Please enter a valid email address';
+    },
+  }
 
 ]);
 
@@ -138,10 +160,7 @@ let {title, contentTable, description, installation, usage, screenshot, builtWit
 // and joining the strings with newline (\n) to create a formatted list.
 function returnList(input) {
   if (input) {
-    return input
-      .split(",")
-      .map((item) => `* ${item.trim()}`)
-      .join("\n");
+    return input.split(",").map((input) => `* ${input.trim()}`).join("\n");
   }
 }
 
@@ -166,23 +185,31 @@ let readMeGenerator = `
   ## Built with
   ${returnList(builtWith)}
 
-  
-  ## What I learned
-  ${learnt}
-
   ## License
-  ${generateLicense(license)}
+  This application is covered under: ${generateLicense(license)}
+
+
+  ## Contributing
+
+  > Contributions are what make the open source community such an extraordinary environment for learning, inspiration, and creation.
+  
+  Your contributions are very much appreciated. If you have a proposal to improve this, please share it via:
+  ${contributing}
+  
+
+  ## Test
+  Is there any test: ${confirmTest}
+  If so, provide test information: ${(test)}
+
+  ## Questions
+  Feel free to contact me with any questions about the application, the contribution, the test, or anything else.
+  - ${(email)}
+  - Github Name: ${(github)}
+  - Github URL: ${(githubUrl)}
 
   ## Authors
   ${returnList(authors)}
-
-  ## Questions
-  ${(questions)}
-
-  ## Credits
-  ${confirmCredits}
-  ${returnList(credits)}
-
+  
   `;
 
 // The await operator is used to wait for a promise before continuing the execution of the code.
@@ -205,9 +232,7 @@ function generateLicense(license) {
 // This function generates a screenshot image based on its screenshot parameter.
 // Conditional statements provide different output according to screenshot value.
 function generateScreenshot(screenshot) {
-  if (screenshot === "both") {
-    return "![screenshot](images/bn.gif)\n![screenshot](images/bn.png)";
-  } else if (screenshot === "video") {
+  if (screenshot === "video") {
     return "![screenshot](images/bn.gif)";
   } else {
     return "![screenshot](images/bn_image.png)";
