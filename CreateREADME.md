@@ -1,5 +1,5 @@
 
-  # **Better Nutrient** ✒️📃
+  # **Better Nutrient** 📃
   
   ## Table of contents
   - [Project Description](#project-description)
@@ -31,7 +31,6 @@ code .
 
   ## Screenshot
   ![screenshot](images/bn.gif)
-![screenshot](images/bn.png)
   
   ## Built with
   * - Technologies: 
@@ -51,7 +50,7 @@ code .
   For future development, our aim is to introduce a feature that provides users with healthy smoothie recipes to complement their healthy meal choices. Additionally, we will include a health and wellness blog to provide users with informative and educational articles on healthy eating and wellness.
 
   ## License
-  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+  [![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)
 
   ## Credits
   yes

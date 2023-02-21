@@ -13,8 +13,8 @@ const requireInput = (input) => {
 };
 
 
-let {title, contentTable, description, installation, usage, screenshot, builtWith, learnt, continuedDevelopment,
-  license,confirmCredits, credits, authors} = await inquirer.prompt([
+let {title, contentTable, description, installation, usage, screenshot, builtWith, learnt, 
+  license, authors, questions, confirmCredits, credits,} = await inquirer.prompt([
   {
     type: "input",
     name: "title",
@@ -31,9 +31,9 @@ let {title, contentTable, description, installation, usage, screenshot, builtWit
       - [Screenshot](#screenshot)
       - [Built with](#built-with)
       - [What I learned](#what-i-learned)
-      - [Continued development](#continued-development)
       - [License](#license)
       - [Authors](#authors)
+      - [Questions](#questions)
       - [Credits](#credits)`,
   },
   {
@@ -91,12 +91,6 @@ let {title, contentTable, description, installation, usage, screenshot, builtWit
     validate: requireInput,
   },
   {
-    type: "input",
-    name: "continuedDevelopment",
-    message: "Write your continued development?",
-    default: "No information provided",
-  },
-  {
     type: "list",
     name: "license",
     message: "Select a license badge",
@@ -104,6 +98,18 @@ let {title, contentTable, description, installation, usage, screenshot, builtWit
     filter(val) {
       return val.toLowerCase();
     },
+  },
+  {
+    type: "input",
+    name: "authors",
+    message: "Write the author(s) for the project",
+    validate: requireInput,
+  },
+  {
+    type: "input",
+    name: "questions",
+    message: "Write your contact details:",
+    validate: requireInput,
   },
   {
     type: "list",
@@ -124,12 +130,6 @@ let {title, contentTable, description, installation, usage, screenshot, builtWit
     when: (response) => response.confirmCredits === 'yes',
         default: () => 'No information submitted'
   },
-  {
-    type: "input",
-    name: "authors",
-    message: "Write the author(s) for the project",
-    validate: requireInput,
-  },
 
 ]);
 
@@ -146,7 +146,7 @@ function returnList(input) {
 }
 
 let readMeGenerator = `
-  # **${title}** ✒️📃
+  # **${title}** 📃
   
   ## Table of contents
   ${contentTable}
@@ -170,21 +170,23 @@ let readMeGenerator = `
   ## What I learned
   ${learnt}
 
-  ## Continued development
-  ${continuedDevelopment}
-
   ## License
   ${generateLicense(license)}
+
+  ## Authors
+  ${returnList(authors)}
+
+  ## Questions
+  ${(questions)}
 
   ## Credits
   ${confirmCredits}
   ${returnList(credits)}
 
-  ## Authors
-  ${returnList(authors)}
-
-
   `;
+
+// The await operator is used to wait for a promise before continuing the execution of the code.
+// When the promise is fulfilled, the value is returned. 
 // Node fs (file system) module to create a new file and write the contents of the readMeGenerator variable to it.
 await fs.writeFile("CreateREADME.md", readMeGenerator);
 
