@@ -52,12 +52,12 @@ code .
   > Contributions are what make the open source community such an extraordinary environment for learning, inspiration, and creation.
   
   Your contributions are very much appreciated. If you have a proposal to improve this, please share it via:
-  Email
+  Email which can be located in the 'Questions' section.
   
 
   ## Test
-  Is there any test: yes
-  If so, provide test information: Unit Test
+  - Is there any test: yes
+  - If so, provide test information: Unit Test
 
   ## Questions
   Feel free to contact me with any questions about the application, the contribution, the test, or anything else.

@@ -198,8 +198,8 @@ let readMeGenerator = `
   
 
   ## Test
-  Is there any test: ${confirmTest}
-  If so, provide test information: ${(test)}
+  - Is there any test: ${confirmTest}
+  - If so, provide test information: ${(test)}
 
   ## Questions
   Feel free to contact me with any questions about the application, the contribution, the test, or anything else.
