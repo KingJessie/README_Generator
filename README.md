@@ -17,9 +17,9 @@ When launching an open source project on GitHub, it is essential to have a decen
 
 <br>
 
-## ***User Story***
+## **User Story**
 
-<sub>As a developer, I want a README generator so that I can quickly create a professional README for a new project.</sub>
+***As a developer, I want a README generator so that I can quickly create a professional README for a new project.***
 
 <br>
 
@@ -59,6 +59,10 @@ With this application, you can generate a README file quickly and effortlessly t
 ## Demo
 
 
+https://user-images.githubusercontent.com/97694194/220349179-7bca28de-49fb-4d85-b3a4-3e80db41d707.mp4
+
+
+
 <br>
 
 ## Resources:
@@ -70,11 +74,11 @@ With this application, you can generate a README file quickly and effortlessly t
 ## License
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-MIT License
+**MIT License**
 
-Copyright (c) 2023 KingJessie
+***Copyright (c) 2023 KingJessie***
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+<sub>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</sub>
 
 <sub>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</sub>
 
