@@ -115,7 +115,7 @@ let {title, contentTable, description, installation, usage, screenshot, builtWit
     message: "Please provide test information:",
     //  Confirm test: If user choice is 'Yes,' then it asks user to submit response.
     // A default answer is used if no information has been given.
-    // If the user chose "No," the programme would end and the word "NONE" would be shown in the test.
+    // If the user chose "No," the programme would end and the word "no" would be shown in the test.
     when: (response) => response.confirmTest === 'yes',
         default: () => 'No information submitted'
   },
